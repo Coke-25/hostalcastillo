@@ -192,12 +192,15 @@ const quickFacts = [
   "Autobús en la puerta del hostal",
 ];
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const assetPath = (path: string) => `${basePath}${path}`;
+
 export default function Home() {
   return (
     <main>
       <section className="relative min-h-[88svh] overflow-hidden bg-[#141414] text-white">
         <Image
-          src="/img/fe-3-hostal-castillo-la-rinconada.jpg"
+          src={assetPath("/img/fe-3-hostal-castillo-la-rinconada.jpg")}
           alt="Habitación luminosa de Hostal Castillo"
           fill
           priority
@@ -209,7 +212,13 @@ export default function Home() {
 
         <header className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
           <a href="#inicio" className="flex items-center gap-3" aria-label="Inicio">
-            <Image src="/img/logotipo-hostal-castillo.png" width={150} height={70} alt="Logo Hostal Castillo" />
+            <Image
+              src={assetPath("/img/logotipo-hostal-castillo.png")}
+              width={166}
+              height={60}
+              alt="Logo Hostal Castillo"
+              className="h-auto w-[150px]"
+            />
           </a>
           <nav className="hidden items-center gap-7 text-sm font-medium text-white/86 md:flex">
             <a className="transition hover:text-white" href="#hostal">
@@ -265,7 +274,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div className="relative min-h-[430px] overflow-hidden sm:min-h-[560px]">
             <Image
-              src="/img/fe-5-hostal-castillo-la-rinconada.jpg"
+              src={assetPath("/img/fe-5-hostal-castillo-la-rinconada.jpg")}
               alt="Fachada de Hostal Castillo"
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"
@@ -417,7 +426,7 @@ export default function Home() {
             {galleryImages.map((image) => (
               <a
                 key={image.src}
-                href={image.src}
+                href={assetPath(image.src)}
                 target="_blank"
                 rel="noreferrer"
                 className={`group relative overflow-hidden bg-[#e7e0d7] ${
@@ -425,7 +434,7 @@ export default function Home() {
                 } ${image.height > image.width ? "row-span-2" : ""}`}
               >
                 <Image
-                  src={image.src}
+                  src={assetPath(image.src)}
                   alt={image.alt}
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
